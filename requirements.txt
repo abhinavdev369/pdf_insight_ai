@@ -6,3 +6,4 @@ faiss-cpu
 sentence-transformers
 tiktoken
 python-dotenv
+langchain-community
