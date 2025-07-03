@@ -5,12 +5,20 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
+from langchain_community.llms import HuggingFaceHub
 from langchain.chains import retrieval_qa
 
 load_dotenv()
 open_ai_key=os.getenv("OPENAI_API_KEY")
 
-llm=OpenAI(openai_api_key=open_ai_key,temperature=0.3)
+#llm=OpenAI(openai_api_key=open_ai_key,temperature=0.3)
+#the openai llm is no longer possible when the rate limit error appears in the free version
+#using the huggingfacehub api below to replace openai llm model
+llm=HuggingFaceHub(
+    repo_id="gpt2",
+    model_kwargs={"temperature":0.3,"max_length":512}
+)
+#here we use a model found from huggingface with no rate limits as in openai
 
 def split_text(text):
     splitter=CharacterTextSplitter(chunk_size=1000,chunk_overlap=150)
