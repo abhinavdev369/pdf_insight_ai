@@ -1,0 +1,10 @@
+vector_store/
+venv/
+env/
+__pycache__/
+.env
+.streamlot/
+requirements.txt
+
+
+
